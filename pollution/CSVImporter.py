@@ -72,7 +72,7 @@ def preprocess(s=-1, e=-1) -> pd.DataFrame:
 
     # add each pollutant level column
     for i in range(len(pollutant_label)):
-        df.loc[:, level_label] = pd.cut(df[pollutant_label[i]], bins=bins[i], labels=range(4))
+        df.loc[:, level_label[i]] = pd.cut(df[pollutant_label[i]], bins=bins[i], labels=range(4))
 
     # sort columns
     front = group_cols
