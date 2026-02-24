@@ -7,6 +7,14 @@ import seaborn as sns
 
 BASE_DIR = Path(__file__).resolve().parent
 
+def import_raw(filenames: list[str]) -> pd.DataFrame:
+    tar_name = "weather_raw.csv"
+    if (BASE_DIR / "data" / tar_name).exists():
+        return pd.read_csv(BASE_DIR / "data" / tar_name)
+    df = import_csv_names(filenames)
+    df.to_csv((BASE_DIR / "data" / tar_name), index=False)
+    return df
+
 def import_csv() -> pd.DataFrame:
     # check existing file
     tar_name = "weather_preprocessed.csv"
@@ -81,6 +89,9 @@ def read_condition(cond:str) -> int:
     return 0
 
 def reset_file():
+    tar_name = "weather_raw.csv"
+    if (BASE_DIR / "data" / tar_name).exists():
+        os.remove(BASE_DIR / "data" / tar_name)
     tar_name = "weather_preprocessed.csv"
     if (BASE_DIR / "data" / tar_name).exists():
         os.remove(BASE_DIR / "data" / tar_name)
