@@ -35,9 +35,9 @@ def preprocess(s=-1, e=-1) -> pd.DataFrame:
     # add year column & cut data to optimize
     df.loc[:, "year"] = df["dt"] // 1_000_000
     if s == -1:
-        s = df["year"].min
+        s = df["year"].min()
     if e == -1:
-        e = df["year"].max
+        e = df["year"].max()
     df = df[(df["year"] >= s) & (df["year"] <= e)]
 
     # add month, day
