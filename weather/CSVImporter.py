@@ -76,6 +76,11 @@ def preprocess(df: pd.DataFrame) -> pd.DataFrame:
             'sealevelpressure', 'visibility', 'solarradiation']
     df = df[sorted_cols]
 
+    df = df.drop_duplicates(
+        subset=['year', 'month', 'day'],
+        keep='first'
+    )
+
     return df
 
 # cloudy conditions
